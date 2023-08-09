@@ -1,6 +1,6 @@
 import createREGL from "regl";
-import frag from "./shaders/frag.glsl";
-import vert from "./shaders/vert.glsl";
+
+import { vertexShader as vert, fragmentShader as frag } from "shaders";
 
 const regl = createREGL();
 

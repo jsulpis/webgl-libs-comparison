@@ -6,11 +6,16 @@ settings:
 
 importers:
 
+  .: {}
+
   apps/regl:
     devDependencies:
       regl:
         specifier: ^2.1.0
         version: 2.1.0
+      shaders:
+        specifier: workspace:*
+        version: link:../../shaders
       typescript:
         specifier: ^5.0.2
         version: 5.0.2
@@ -23,6 +28,9 @@ importers:
 
   apps/shree:
     devDependencies:
+      shaders:
+        specifier: workspace:*
+        version: link:../../shaders
       shree:
         specifier: ^0.1.14
         version: 0.1.14
@@ -35,6 +43,8 @@ importers:
       vite-plugin-glsl:
         specifier: ^1.1.2
         version: 1.1.2(vite@4.4.5)
+
+  shaders: {}
 
 packages:
 

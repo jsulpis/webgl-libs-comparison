@@ -1,7 +1,6 @@
 import * as SHREE from "shree";
 
-import fragmentShader from "./shaders/frag.glsl";
-import vertexShader from "./shaders/vert.glsl";
+import { vertexShader, fragmentShader } from "shaders";
 
 function flatten<T>(array: T[][]): T[] {
    return array.reduce((acc, val) => acc.concat(val), []);
