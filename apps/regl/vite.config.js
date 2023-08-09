@@ -5,6 +5,7 @@ export default defineConfig({
   base: '/webgl-tools-comparison/regl/',
   build: {
     outDir: '../../public/regl',
+    emptyOutDir: true
   },
   plugins: [glsl()]
 });

@@ -44,6 +44,7 @@ scene.add(mesh);
 
 requestAnimationFrame(function animate() {
    requestAnimationFrame(animate);
+
    mesh.material.uniforms.time.value = performance.now() / 500;
    renderer.render(scene, camera);
 });
