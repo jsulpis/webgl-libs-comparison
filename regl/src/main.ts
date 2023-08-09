@@ -8,14 +8,22 @@ const draw = regl({
    frag,
    vert,
    attributes: {
-      position: [-2, 0, 0, -2, 2, 2],
+      position: [
+         [0, 0, 0],
+         [1, 0, 0],
+         [1, 1, 0],
+         [0, 1, 0],
+      ],
    },
+   elements: [
+      [0, 1, 2],
+      [0, 2, 3],
+   ],
    uniforms: {
       time: ({ time }) => time,
       // or
       // time: regl.prop('time'),
    },
-   count: 3,
 });
 
 regl.frame(({ time }) => {
