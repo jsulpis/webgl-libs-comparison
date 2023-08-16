@@ -10,9 +10,9 @@ I want to make animations with WebGL shaders, a bit like on [Shadertoy](https://
 
 ## Requirements
 
-- draw a rectangle with given dimensions
-- control over vertex and fragment shaders
-- set uniforms and update their values over time
+-  draw a simple rectangle occupying all the canvas space with given dimensions
+-  control over vertex and fragment shaders
+-  set uniforms and update their values over time
 
 That's it. No need for perspective, multiple elements, or even 3D.
 
@@ -33,11 +33,13 @@ I used these shaders to draw on a full screen canvas using the various methods.
 | [regl](https://github.com/regl-project/regl)                               | [live](https://jsulpis.github.io/webgl-tools-comparison/regl/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/regl/src/main.ts)             | 125kB             | 42.2kB        | ✅         | easy       |
 | [shree](sawa-zen.github.io/shree/)                                         | [live](https://jsulpis.github.io/webgl-tools-comparison/shree/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/shree/src/main.ts)           | 27.2kB            | 8.2kB         | ❌         | hard       |
 | [three](https://threejs.org/)                                              | [live](https://jsulpis.github.io/webgl-tools-comparison/three/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/three/src/main.ts)           | 437kB             | 111kB         | ✅         | normal     |
+| [pixi](https://pixijs.com/)                                                | [live](https://jsulpis.github.io/webgl-tools-comparison/pixi/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/pixi/src/main.ts)             | 453kB             | 137kB         | ✅         | normal     |
 
 ## Conclusion
 
-- **Native WebGL** seems to be the best option for the use case described above. It's hard to write but once it's there we can forget it, and it's way lighter than the other options.
-- **glslCanvas** is probably the best compromise between ease of use, weight and functionality for basic use cases. You can throw a CDN script on an HTML document, provide you shaders and you are good to go without writing any JavaScript code.
-- **regl** seems a bit outdated because it's too heavy for simple use cases and for more complex ones three.js is probably a better choice.
-- **shree** sits nicely in the spot where you need some basic functionalities like perspective, multiple objects or load external files, but don't need the full power of three.js, while being extremely lightweight.
-- **three** is by far the most popular and the default choice for any 3D project that needs more than basic functionalities (_if_ native WebGL, glslCanvas and shree are not enough).
+-  **Native WebGL** seems to be the best option for the use case described above. It's hard to write but once it's there we can forget it, and it's way lighter than the other options.
+-  **glslCanvas** is probably the best compromise between ease of use, weight and functionality for basic use cases. You can throw a CDN script on an HTML document, provide your shaders and you are good to go without writing any JavaScript code.
+-  **regl** seems a bit outdated because it's too heavy for simple use cases and for more complex ones three.js is probably a better choice.
+-  **shree** sits nicely in the spot where you need some basic functionalities like perspective, multiple objects or load external files, but don't need the full power of three.js, while being extremely lightweight.
+-  **three** is by far the most popular and the default choice for any 3D project that needs more than basic functionalities (_if_ native WebGL, glslCanvas and shree are not enough).
+-  **pixi** claims to be the fastest 2D WebGL renderer. I guess it should be reserved for advanced 2D use cases, because it's even heavier than three.
