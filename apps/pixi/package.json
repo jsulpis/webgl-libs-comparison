@@ -9,10 +9,10 @@
       "preview": "vite preview"
    },
    "devDependencies": {
-      "pixi.js": "^7.2.4",
+      "pixi.js": "7.2.4",
       "shaders": "workspace:*",
-      "typescript": "^5.0.2",
-      "vite": "^4.4.5",
-      "vite-plugin-glsl": "^1.1.2"
+      "typescript": "5.0.2",
+      "vite": "4.4.5",
+      "vite-plugin-glsl": "1.1.2"
    }
 }

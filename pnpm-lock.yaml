@@ -11,73 +11,76 @@ importers:
   apps/four:
     devDependencies:
       four:
-        specifier: npm:fourwastaken@^0.2.0
+        specifier: npm:fourwastaken@0.2.0
         version: /fourwastaken@0.2.0
       shaders:
         specifier: workspace:*
         version: link:../../shaders
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.4.5
+        specifier: 4.4.5
         version: 4.4.5
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(vite@4.4.5)
+      vite-plugin-top-level-await:
+        specifier: 1.3.1
+        version: 1.3.1(vite@4.4.5)
 
   apps/glslCanvas:
     devDependencies:
       glslCanvas:
-        specifier: ^0.2.6
+        specifier: 0.2.6
         version: 0.2.6
       shaders:
         specifier: workspace:*
         version: link:../../shaders
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.4.5
+        specifier: 4.4.5
         version: 4.4.5
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(vite@4.4.5)
 
   apps/pixi:
     devDependencies:
       pixi.js:
-        specifier: ^7.2.4
+        specifier: 7.2.4
         version: 7.2.4(@pixi/utils@7.2.4)
       shaders:
         specifier: workspace:*
         version: link:../../shaders
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.4.5
+        specifier: 4.4.5
         version: 4.4.5
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(vite@4.4.5)
 
   apps/regl:
     devDependencies:
       regl:
-        specifier: ^2.1.0
+        specifier: 2.1.0
         version: 2.1.0
       shaders:
         specifier: workspace:*
         version: link:../../shaders
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.4.5
+        specifier: 4.4.5
         version: 4.4.5
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(vite@4.4.5)
 
   apps/shree:
@@ -86,37 +89,37 @@ importers:
         specifier: workspace:*
         version: link:../../shaders
       shree:
-        specifier: ^0.1.14
+        specifier: 0.1.14
         version: 0.1.14
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.4.5
+        specifier: 4.4.5
         version: 4.4.5
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(vite@4.4.5)
 
   apps/three:
     devDependencies:
       '@types/three':
-        specifier: ^0.155.0
+        specifier: 0.155.0
         version: 0.155.0
       shaders:
         specifier: workspace:*
         version: link:../../shaders
       three:
-        specifier: ^0.155.0
+        specifier: 0.155.0
         version: 0.155.0
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.4.5
+        specifier: 4.4.5
         version: 4.4.5
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(vite@4.4.5)
 
   apps/webgl:
@@ -125,13 +128,13 @@ importers:
         specifier: workspace:*
         version: link:../../shaders
       typescript:
-        specifier: ^5.0.2
+        specifier: 5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.4.5
+        specifier: 4.4.5
         version: 4.4.5
       vite-plugin-glsl:
-        specifier: ^1.1.2
+        specifier: 1.1.2
         version: 1.1.2(vite@4.4.5)
 
   shaders: {}
@@ -687,6 +690,16 @@ packages:
       url: 0.11.1
     dev: true
 
+  /@rollup/plugin-virtual@3.0.1:
+    resolution: {integrity: sha512-fK8O0IL5+q+GrsMLuACVNk2x21g3yaw+sG2qn16SnUd3IlBsQyvWxLMGHmCmXRMecPjGRSZ/1LmZB4rjQm68og==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dev: true
+
   /@rollup/pluginutils@5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
@@ -699,6 +712,118 @@ packages:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
+
+  /@swc/core-darwin-arm64@1.3.77:
+    resolution: {integrity: sha512-l4KGQAGB4Ih1Al2tWoUBrtVJCF/xZRjH3jCMCRD52KZDRAnRVDq42JKek7+aHjjH8juzTISaqzsI8Ipv6zvKhA==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-darwin-x64@1.3.77:
+    resolution: {integrity: sha512-eFCkZg/BzObOn5IWn7t/Ywz+jlZKff/1XBymT7Arh/UkO39Agh+rYdBqjbylp4JQMl0qGRBfxD3wPgDRoViNVQ==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-linux-arm-gnueabihf@1.3.77:
+    resolution: {integrity: sha512-+1BueyGcCQAtxSORJml0CU8aKQNssQ5E3ABMFJwCbcec+lUCiGYK1fBfqj4FmWQMbXuQ+mn1SMeXSZAtaXoQ3w==}
+    engines: {node: '>=10'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-linux-arm64-gnu@1.3.77:
+    resolution: {integrity: sha512-3smbzVcuuCiWWPFeUIp1c0aAXd+fGsc8x8rUcYvoJAWBgLJ45JymOI5WSUjIybl3rk0prdkbFylZuR0t1Rue3A==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-linux-arm64-musl@1.3.77:
+    resolution: {integrity: sha512-e81+i4ef5vDeu9AkMY2AamPcmtPVPUqeqq3aNWM1tcHCaUej1DwY4xhRxrd1OvEoYyVBLtiMb5nenF3V9OzXIQ==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-linux-x64-gnu@1.3.77:
+    resolution: {integrity: sha512-gl3+9VESckZ/GYCmGClGgXqB2tAA2MivEV/51Wde+2alo2lPSSujEhxE6Q3TNYkXOLAHSupYyDZ0ou9RfXufOw==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-linux-x64-musl@1.3.77:
+    resolution: {integrity: sha512-AqQLZAMYTaNrA4i/Nv/GhXdildDZyRv6xsK8u2actevv5PPjD/69yYB3Z4uaptwh/4ys4W/Y2vnt+OPCNH4OQg==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-win32-arm64-msvc@1.3.77:
+    resolution: {integrity: sha512-Wdw++6w7WyavxZ3WruElCrRJ6EO0iHS0Mts4qHnbKgD08GJqIMTZPtZ5qhRe9zCf6sj2rQqhAMf/HKhYrHoF+w==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-win32-ia32-msvc@1.3.77:
+    resolution: {integrity: sha512-ObNVpdtLdXDpmVKuMZh87yBYL4ti64WX95o2j5Oq3r0e0RqwIGqGvPDxvJVEiyCnaXHfl8eSNKWuiOxPHPkMNQ==}
+    engines: {node: '>=10'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core-win32-x64-msvc@1.3.77:
+    resolution: {integrity: sha512-Ew6jg/qr0v/2ixeJXvIUBuAPMKTz8HRoDBO/nHkvlnDFmkhsyH7h5YwJS1rLBwAEhWuJaVYjYi7cibZTI/QRYQ==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@swc/core@1.3.77:
+    resolution: {integrity: sha512-CiLD2NGTdhE8JnWFHeRAglaCAcvwOxvpeWNtCIT261GrxTKCXHPAn4eqIWiBzXnwWDmZ6XdyrCL4/GmPESNnrg==}
+    engines: {node: '>=10'}
+    requiresBuild: true
+    peerDependencies:
+      '@swc/helpers': ^0.5.0
+    peerDependenciesMeta:
+      '@swc/helpers':
+        optional: true
+    optionalDependencies:
+      '@swc/core-darwin-arm64': 1.3.77
+      '@swc/core-darwin-x64': 1.3.77
+      '@swc/core-linux-arm-gnueabihf': 1.3.77
+      '@swc/core-linux-arm64-gnu': 1.3.77
+      '@swc/core-linux-arm64-musl': 1.3.77
+      '@swc/core-linux-x64-gnu': 1.3.77
+      '@swc/core-linux-x64-musl': 1.3.77
+      '@swc/core-win32-arm64-msvc': 1.3.77
+      '@swc/core-win32-ia32-msvc': 1.3.77
+      '@swc/core-win32-x64-msvc': 1.3.77
     dev: true
 
   /@tweenjs/tween.js@18.6.4:
@@ -1021,6 +1146,11 @@ packages:
       qs: 6.11.2
     dev: true
 
+  /uuid@9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: true
+
   /vite-plugin-glsl@1.1.2(vite@4.4.5):
     resolution: {integrity: sha512-zmXsfc1vn2MlYve9t3FAoWuhLyoCkNS1TuQL+TkXZL7tGmBjRErp10eNYxcse5tK9oUC5MyJpNc4ElpQnx8DoA==}
     engines: {node: '>= 16.15.1', npm: '>= 8.11.0'}
@@ -1030,6 +1160,20 @@ packages:
       '@rollup/pluginutils': 5.0.2
       vite: 4.4.5
     transitivePeerDependencies:
+      - rollup
+    dev: true
+
+  /vite-plugin-top-level-await@1.3.1(vite@4.4.5):
+    resolution: {integrity: sha512-55M1h4NAwkrpxPNOJIBzKZFihqLUzIgnElLSmPNPMR2Fn9+JHKaNg3sVX1Fq+VgvuBksQYxiD3OnwQAUu7kaPQ==}
+    peerDependencies:
+      vite: '>=2.8'
+    dependencies:
+      '@rollup/plugin-virtual': 3.0.1
+      '@swc/core': 1.3.77
+      uuid: 9.0.0
+      vite: 4.4.5
+    transitivePeerDependencies:
+      - '@swc/helpers'
       - rollup
     dev: true
 
