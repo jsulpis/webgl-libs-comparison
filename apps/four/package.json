@@ -1,0 +1,19 @@
+{
+   "name": "four",
+   "version": "0.0.0",
+   "private": true,
+   "type": "module",
+   "scripts": {
+      "build": "tsc && vite build",
+      "dev": "vite",
+      "preview": "vite preview"
+   },
+   "devDependencies": {
+      "four": "npm:fourwastaken@0.2.0",
+      "shaders": "workspace:*",
+      "typescript": "5.0.2",
+      "vite": "4.4.5",
+      "vite-plugin-glsl": "1.1.2",
+      "vite-plugin-top-level-await": "1.3.1"
+   }
+}
