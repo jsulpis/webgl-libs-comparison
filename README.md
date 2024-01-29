@@ -20,7 +20,7 @@ Bonus point if the lib supports TypeScript because I'm used to using it in real 
 
 ## Setup
 
-I created basic [vertex](https://github.com/jsulpis/webgl-tools-comparison/blob/main/shaders/src/vertex.glsl) and [fragment](https://github.com/jsulpis/webgl-tools-comparison/blob/main/shaders/src/fragment.glsl) shaders that display a gradient based on the UV coordinates, with a `time` uniform to move this gradient over time.
+I created basic [vertex](https://github.com/jsulpis/webgl-libs-comparison/blob/main/shaders/src/vertex.glsl) and [fragment](https://github.com/jsulpis/webgl-libs-comparison/blob/main/shaders/src/fragment.glsl) shaders that display a gradient based on the UV coordinates, with a `time` uniform to move this gradient over time.
 
 I used these shaders to draw on a full screen canvas using the various methods.
 
@@ -28,13 +28,13 @@ I used these shaders to draw on a full screen canvas using the various methods.
 
 | Method                                                                     | Demo                                                                                                                                                                  | Weight (resource) | Weight (gzip) | TypeScript | Complexity   |
 | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------- | ---------- | ------------ |
-| [native WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) | [live](https://jsulpis.github.io/webgl-tools-comparison/webgl/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/webgl/src/main.ts)           | 1.9kB             | 1.1kB         | ✅         | most complex |
-| [glslCanvas](https://github.com/patriciogonzalezvivo/glslCanvas)           | [live](https://jsulpis.github.io/webgl-tools-comparison/glslCanvas/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/glslCanvas/src/main.ts) | 28.6kB            | 9.6kB         | ❌         | simplest     |
-| [regl](https://github.com/regl-project/regl)                               | [live](https://jsulpis.github.io/webgl-tools-comparison/regl/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/regl/src/main.ts)             | 125kB             | 42.2kB        | ✅         | simple       |
-| [four](https://github.com/CodyJasonBennett/four)                           | [live](https://jsulpis.github.io/webgl-tools-comparison/four/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/four/src/main.ts)             | 19.4kB            | 7.3kB         | ✅         | complex      |
-| [shree](https://sawa-zen.github.io/shree/)                                 | [live](https://jsulpis.github.io/webgl-tools-comparison/shree/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/shree/src/main.ts)           | 27.2kB            | 8.2kB         | ❌         | complex      |
-| [three](https://threejs.org/)                                              | [live](https://jsulpis.github.io/webgl-tools-comparison/three/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/three/src/main.ts)           | 437kB             | 111kB         | ✅         | normal       |
-| [pixi](https://pixijs.com/)                                                | [live](https://jsulpis.github.io/webgl-tools-comparison/pixi/), [code](https://github.com/jsulpis/webgl-tools-comparison/blob/main/apps/pixi/src/main.ts)             | 453kB             | 137kB         | ✅         | normal       |
+| [native WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API) | [live](https://jsulpis.github.io/webgl-libs-comparison/webgl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/webgl/src/main.ts)           | 1.9kB             | 1.1kB         | ✅         | most complex |
+| [glslCanvas](https://github.com/patriciogonzalezvivo/glslCanvas)           | [live](https://jsulpis.github.io/webgl-libs-comparison/glslCanvas/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/glslCanvas/src/main.ts) | 28.6kB            | 9.6kB         | ❌         | simplest     |
+| [regl](https://github.com/regl-project/regl)                               | [live](https://jsulpis.github.io/webgl-libs-comparison/regl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/regl/src/main.ts)             | 125kB             | 42.2kB        | ✅         | simple       |
+| [four](https://github.com/CodyJasonBennett/four)                           | [live](https://jsulpis.github.io/webgl-libs-comparison/four/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/four/src/main.ts)             | 19.4kB            | 7.3kB         | ✅         | complex      |
+| [shree](https://sawa-zen.github.io/shree/)                                 | [live](https://jsulpis.github.io/webgl-libs-comparison/shree/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/shree/src/main.ts)           | 27.2kB            | 8.2kB         | ❌         | complex      |
+| [three](https://threejs.org/)                                              | [live](https://jsulpis.github.io/webgl-libs-comparison/three/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/three/src/main.ts)           | 437kB             | 111kB         | ✅         | normal       |
+| [pixi](https://pixijs.com/)                                                | [live](https://jsulpis.github.io/webgl-libs-comparison/pixi/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/pixi/src/main.ts)             | 453kB             | 137kB         | ✅         | normal       |
 
 ## Conclusion
 
