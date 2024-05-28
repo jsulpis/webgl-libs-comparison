@@ -15,7 +15,7 @@ const material = new THREE.ShaderMaterial({
    vertexShader: vertexShader.replace("attribute vec3 position;", ""), // three already provides the position attribute
    fragmentShader,
    uniforms: {
-      time: { value: 0.0 },
+      uTime: { value: 0.0 },
    },
 });
 
@@ -26,7 +26,7 @@ scene.add(mesh);
 requestAnimationFrame(function animate() {
    requestAnimationFrame(animate);
 
-   mesh.material.uniforms.time.value = performance.now() / 500;
+   mesh.material.uniforms.uTime.value = performance.now() / 500;
    renderer.render(scene, camera);
 });
 

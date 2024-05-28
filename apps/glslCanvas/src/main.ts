@@ -8,5 +8,5 @@ sandbox.load(fragmentShader, vertexShader);
 requestAnimationFrame(function animate() {
    requestAnimationFrame(animate);
 
-   sandbox.setUniform("time", performance.now() / 500);
+   sandbox.setUniform("uTime", performance.now() / 500);
 });

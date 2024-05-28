@@ -20,7 +20,7 @@ const draw = regl({
       [0, 2, 3],
    ],
    uniforms: {
-      time: ({ time }) => time,
+      uTime: ({ time }) => time,
       // or
       // time: regl.prop('time'),
    },

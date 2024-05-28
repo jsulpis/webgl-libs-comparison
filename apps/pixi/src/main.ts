@@ -26,7 +26,7 @@ const geometry = new PIXI.Geometry()
    .addIndex([0, 1, 2, 0, 2, 3]);
 
 const uniforms = {
-   time: 0,
+   uTime: 0,
 };
 
 // Build the shader and the quad.
@@ -37,5 +37,5 @@ app.stage.addChild(quad);
 
 // start the animation..
 app.ticker.add(() => {
-   quad.shader.uniforms.time = performance.now() / 500;
+   quad.shader.uniforms.uTime = performance.now() / 500;
 });

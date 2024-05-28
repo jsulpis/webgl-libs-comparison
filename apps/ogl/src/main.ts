@@ -32,7 +32,7 @@ const program = new Program(gl, {
    vertex: vertexShader,
    fragment: fragmentShader,
    uniforms: {
-      time: { value: 0 },
+      uTime: { value: 0 },
    },
 });
 
@@ -41,7 +41,7 @@ const scene = new Mesh(gl, { geometry, program });
 requestAnimationFrame(function animate(t) {
    requestAnimationFrame(animate);
 
-   program.uniforms.time.value = t * 0.001;
+   program.uniforms.uTime.value = t * 0.001;
    renderer.render({ scene });
 });
 

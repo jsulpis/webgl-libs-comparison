@@ -19,7 +19,7 @@ const material = new SHREE.Material({
    vertexShader,
    fragmentShader,
    uniforms: {
-      time: { type: "f", value: 0.0 },
+      uTime: { type: "f", value: 0.0 },
    },
 });
 
@@ -45,7 +45,7 @@ scene.add(mesh);
 requestAnimationFrame(function animate() {
    requestAnimationFrame(animate);
 
-   mesh.material.uniforms.time.value = performance.now() / 500;
+   mesh.material.uniforms.uTime.value = performance.now() / 500;
    renderer.render(scene, camera);
 });
 

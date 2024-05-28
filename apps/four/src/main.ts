@@ -21,7 +21,7 @@ const material = new Material({
    vertex: vertexShader,
    fragment: fragmentShader,
    uniforms: {
-      time: 0.0,
+      uTime: 0.0,
    },
 });
 
@@ -46,7 +46,7 @@ const mesh = new Mesh(geometry, material);
 requestAnimationFrame(function animate() {
    requestAnimationFrame(animate);
 
-   mesh.material.uniforms.time = performance.now() / 500;
+   mesh.material.uniforms.uTime = performance.now() / 500;
    renderer.render(mesh, camera);
 });
 

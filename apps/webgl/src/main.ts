@@ -48,8 +48,8 @@ gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);
 // Draw the square
 gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-// Update the time uniform
-const timeUniformLocation = gl.getUniformLocation(program, "time");
+// Update the uTime uniform
+const timeUniformLocation = gl.getUniformLocation(program, "uTime");
 
 requestAnimationFrame(function animate() {
    requestAnimationFrame(animate);
