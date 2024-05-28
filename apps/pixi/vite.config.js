@@ -7,5 +7,5 @@ export default defineConfig({
       outDir: "../../public/pixi",
       emptyOutDir: true,
    },
-   plugins: [glsl()],
+   plugins: [glsl({ compress: true })],
 });

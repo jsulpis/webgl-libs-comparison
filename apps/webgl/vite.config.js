@@ -7,5 +7,5 @@ export default defineConfig({
       outDir: "../../public/webgl",
       emptyOutDir: true,
    },
-   plugins: [glsl()],
+   plugins: [glsl({ compress: true })],
 });

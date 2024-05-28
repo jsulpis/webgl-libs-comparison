@@ -8,5 +8,5 @@ export default defineConfig({
       outDir: "../../public/four",
       emptyOutDir: true,
    },
-   plugins: [glsl(), topLevelAwait()], // top-level await present in the "four" library
+   plugins: [glsl({ compress: true }), topLevelAwait()], // top-level await present in the "four" library
 });
