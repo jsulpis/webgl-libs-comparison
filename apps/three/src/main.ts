@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { fragmentShader, vertexShader } from "shaders";
+import { fragmentShader, vertexShader } from "common";
 
 const wrapper = document.getElementById("wrapper")!;
 

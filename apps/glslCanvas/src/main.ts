@@ -1,4 +1,4 @@
-import { vertexShader, fragmentShader } from "shaders";
+import { vertexShader, fragmentShader } from "common";
 import GlslCanvas from "glslCanvas";
 
 const sandbox = new GlslCanvas(document.querySelector("canvas"));

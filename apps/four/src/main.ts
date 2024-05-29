@@ -5,7 +5,7 @@ import {
    Geometry,
    Mesh,
 } from "four";
-import { vertexShader, fragmentShader } from "shaders";
+import { vertexShader, fragmentShader } from "common";
 
 function flatten<T>(array: T[][]): T[] {
    return array.reduce((acc, val) => acc.concat(val), []);

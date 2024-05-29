@@ -1,7 +1,0 @@
-{
-	"name": "shaders",
-	"version": "0.0.0",
-	"private": true,
-	"description": "base shaders used in all demos",
-	"type": "module"
-}

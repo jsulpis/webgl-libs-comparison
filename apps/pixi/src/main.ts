@@ -1,4 +1,4 @@
-import { vertexShader, fragmentShader } from "shaders";
+import { vertexShader, fragmentShader } from "common";
 
 import * as PIXI from "pixi.js";
 

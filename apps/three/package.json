@@ -10,7 +10,7 @@
    },
    "devDependencies": {
       "@types/three": "0.164.1",
-      "shaders": "workspace:*",
+      "common": "workspace:*",
       "three": "0.164.1",
       "typescript": "5.4.5",
       "vite": "5.2.12",

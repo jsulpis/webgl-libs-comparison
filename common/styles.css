@@ -1,0 +1,17 @@
+html,
+body {
+   height: 100%;
+}
+body {
+   margin: 0;
+   display: grid;
+   place-items: center;
+   background: black;
+}
+canvas {
+   display: block;
+   width: 80dvmin;
+   height: 80dvmin;
+   border: 2px solid rgba(255 255 255 / 0.2);
+   border-radius: 4%;
+}
