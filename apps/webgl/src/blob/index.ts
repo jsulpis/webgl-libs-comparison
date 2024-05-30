@@ -1,7 +1,5 @@
-import { vertex, fragment, setup } from "common/src";
-import "common/src/styles.css";
+import { vertex, fragment, setup, onCanvasResize } from "common/src";
 import { useWebGLCanvas } from "../useWebGLCanvas";
-import { onCanvasResize } from "common/src/onCanvasResize";
 
 const canvas = document.querySelector("canvas");
 

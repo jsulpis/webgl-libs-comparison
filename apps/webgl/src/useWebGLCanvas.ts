@@ -27,9 +27,9 @@ export const useWebGLCanvas: WebGLCanvasFn = <Uniforms extends Record<string, Un
   const timeUniformLocation = gl.getUniformLocation(program, "uTime");
   const resolutionUniformLocation = gl.getUniformLocation(program, "uResolution");
 
-  requestAnimationFrame(function renderLoop() {
+  requestAnimationFrame(function renderLoop(time) {
     requestAnimationFrame(renderLoop);
-    gl.uniform1f(timeUniformLocation, performance.now() / 500);
+    gl.uniform1f(timeUniformLocation, time / 500);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   });
 

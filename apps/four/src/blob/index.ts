@@ -37,10 +37,10 @@ const geometry = new Geometry({
 
 const mesh = new Mesh(geometry, material);
 
-requestAnimationFrame(function animate() {
+requestAnimationFrame(function animate(time) {
   requestAnimationFrame(animate);
 
-  mesh.material.uniforms.uTime = performance.now() / 500;
+  mesh.material.uniforms.uTime = time / 500;
   renderer.render(mesh);
 });
 
