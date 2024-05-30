@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { vertex, fragment, setup, onCanvasResize } from "common/src";
+import { vertex, fragment, setupBlob, onCanvasResize } from "common";
 
 const canvas = document.querySelector("canvas")!;
 
@@ -30,12 +30,11 @@ requestAnimationFrame(function animate() {
   renderer.render(scene, camera);
 });
 
-const { onMouseUpdate } = setup(canvas);
-onMouseUpdate((x, y) => {
+setupBlob(canvas, (targetMouseCoord) => {
   const currentMouse = mesh.material.uniforms.uMouse.value as [number, number];
   mesh.material.uniforms.uMouse.value = [
-    currentMouse[0] + (x - currentMouse[0]) * 0.05,
-    currentMouse[1] + (y - currentMouse[1]) * 0.05,
+    currentMouse[0] + (targetMouseCoord.x - currentMouse[0]) * 0.05,
+    currentMouse[1] + (targetMouseCoord.y - currentMouse[1]) * 0.05,
   ];
 });
 

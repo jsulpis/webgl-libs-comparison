@@ -1,4 +1,4 @@
-import { vertex, fragment, setup, onCanvasResize } from "common/src";
+import { onCanvasResize, fragment, vertex, setupBlob } from "common";
 import { useWebGLCanvas } from "../useWebGLCanvas";
 
 const canvas = document.querySelector("canvas");
@@ -12,12 +12,12 @@ const { uniforms, setSize } = useWebGLCanvas({
   },
 });
 
-const { onMouseUpdate } = setup(canvas);
-onMouseUpdate((x, y) => {
-  const currentMouse = uniforms.uMouse;
+setupBlob(canvas, (targetMouseCoord) => {
+  const currentMouseCoord = { x: uniforms.uMouse[0], y: uniforms.uMouse[1] };
+
   uniforms.uMouse = [
-    currentMouse[0] + (x - currentMouse[0]) * 0.05,
-    currentMouse[1] + (y - currentMouse[1]) * 0.05,
+    currentMouseCoord.x + (targetMouseCoord.x - currentMouseCoord.x) * 0.05,
+    currentMouseCoord.y + (targetMouseCoord.y - currentMouseCoord.y) * 0.05,
   ];
 });
 

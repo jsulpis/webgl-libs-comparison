@@ -1,6 +1,17 @@
-import type { UniformValue, WebGLCanvasFn, WebGLCanvasProps } from "common";
+import { flatten } from "common";
 
-export const useWebGLCanvas: WebGLCanvasFn = <Uniforms extends Record<string, UniformValue>>({
+type VectorUniform = [number, number] | [number, number, number] | [number, number, number, number];
+type UniformValue = number | VectorUniform;
+type UniformsObj = Record<string, UniformValue>;
+
+interface WebGLCanvasProps<Uniforms extends UniformsObj> {
+  canvas: HTMLCanvasElement | OffscreenCanvas;
+  fragment: string;
+  vertex: string;
+  uniforms?: Uniforms;
+}
+
+export const useWebGLCanvas = <Uniforms extends UniformsObj>({
   canvas,
   fragment,
   vertex,
@@ -95,10 +106,6 @@ function setupProgram(gl: WebGL2RenderingContext, fragment: string, vertex: stri
   gl.useProgram(program);
 
   return program;
-}
-
-function flatten<T>(array: T[][]): T[] {
-  return array.reduce((acc, val) => acc.concat(val), []);
 }
 
 function compileShader(gl: WebGL2RenderingContext, source: string, type: number) {

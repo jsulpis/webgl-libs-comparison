@@ -1,10 +1,7 @@
-export const setup = (canvas: HTMLCanvasElement) => {
-  let mouseUpdateCallback = (_: number, __: number) => {};
-
-  function onMouseUpdate(callback: (x: number, y: number) => void) {
-    mouseUpdateCallback = callback;
-  }
-
+export const setupBlob = (
+  canvas: HTMLCanvasElement,
+  onMouseUpdate: (coords: { x: number; y: number }) => void
+) => {
   const canvasGeometry = getCanvasGeometry(canvas);
   const targetMouse = { x: 0, y: 0 };
 
@@ -15,7 +12,7 @@ export const setup = (canvas: HTMLCanvasElement) => {
 
   requestAnimationFrame(function animate() {
     requestAnimationFrame(animate);
-    mouseUpdateCallback(targetMouse.x, targetMouse.y);
+    onMouseUpdate?.({ x: targetMouse.x, y: targetMouse.y });
   });
 
   canvas.addEventListener("pointerenter", () => {
@@ -29,8 +26,6 @@ export const setup = (canvas: HTMLCanvasElement) => {
       { once: true }
     );
   });
-
-  return { onMouseUpdate };
 };
 
 function getCanvasGeometry(canvas: HTMLCanvasElement) {

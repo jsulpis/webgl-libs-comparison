@@ -1,9 +1,5 @@
 import { WebGLRenderer, Material, Geometry, Mesh } from "four";
-import { vertex, fragment, setup, onCanvasResize } from "common/src";
-
-function flatten<T>(array: T[][]): T[] {
-  return array.reduce((acc, val) => acc.concat(val), []);
-}
+import { vertex, fragment, setupBlob, onCanvasResize, flatten } from "common";
 
 const canvas = document.querySelector("canvas")!;
 
@@ -44,12 +40,11 @@ requestAnimationFrame(function animate(time) {
   renderer.render(mesh);
 });
 
-const { onMouseUpdate } = setup(canvas);
-onMouseUpdate((x, y) => {
+setupBlob(canvas, (targetMouseCoord) => {
   const currentMouse = mesh.material.uniforms.uMouse as [number, number];
   mesh.material.uniforms.uMouse = [
-    currentMouse[0] + (x - currentMouse[0]) * 0.05,
-    currentMouse[1] + (y - currentMouse[1]) * 0.05,
+    currentMouse[0] + (targetMouseCoord.x - currentMouse[0]) * 0.05,
+    currentMouse[1] + (targetMouseCoord.y - currentMouse[1]) * 0.05,
   ];
 });
 
