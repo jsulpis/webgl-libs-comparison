@@ -4,11 +4,6 @@ import { vertex, fragment, setup, onCanvasResize } from "common/src";
 const canvas = document.querySelector("canvas")!;
 
 const renderer = new THREE.WebGLRenderer({ canvas });
-renderer.setSize(
-  canvas.clientWidth * window.devicePixelRatio,
-  canvas.clientHeight * window.devicePixelRatio,
-  false
-);
 
 const scene = new THREE.Scene();
 const camera = new THREE.Camera();
