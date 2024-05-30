@@ -1,7 +1,8 @@
 {
-   "name": "common",
-   "version": "0.0.0",
-   "private": true,
-   "description": "things used in all projects",
-   "type": "module"
+  "name": "common",
+  "version": "0.0.0",
+  "private": true,
+  "description": "things used in all projects",
+  "type": "module",
+  "module": "src/index.ts"
 }

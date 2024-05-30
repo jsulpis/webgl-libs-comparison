@@ -4,8 +4,8 @@ declare module "*.glsl" {
 }
 
 declare module "common" {
-  export const fragmentShader: string;
-  export const vertexShader: string;
+  export const fragment: string;
+  export const vertex: string;
 
   type VectorUniform =
     | [number, number]
@@ -27,7 +27,7 @@ declare module "common" {
     canvas: HTMLCanvasElement | OffscreenCanvas;
     uniforms: Uniforms;
     gl: WebGL2RenderingContext;
-    setSize: ({ width: number, height: number }) => void;
+    setSize: ({ width, height }: { width: number; height: number }) => void;
     setUniform: <U extends Extract<keyof Uniforms, string>>(uniform: U, value: Uniforms[U]) => void;
   };
 }
