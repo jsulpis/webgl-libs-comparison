@@ -15,7 +15,7 @@ declare module "common" {
   type UniformValue = number | VectorUniform;
 
   export interface WebGLCanvasProps<Uniforms extends Record<string, UniformValue>> {
-    canvas: HTMLCanvasElement;
+    canvas: HTMLCanvasElement | OffscreenCanvas;
     fragment: string;
     vertex: string;
     uniforms: Uniforms;
@@ -24,8 +24,10 @@ declare module "common" {
   export type WebGLCanvasFn = <Uniforms extends Record<string, UniformValue>>(
     props: WebGLCanvasProps<Uniforms>
   ) => {
-    canvas: HTMLCanvasElement;
+    canvas: HTMLCanvasElement | OffscreenCanvas;
     uniforms: Uniforms;
+    gl: WebGL2RenderingContext;
+    setSize: ({ width: number, height: number }) => void;
     setUniform: <U extends Extract<keyof Uniforms, string>>(uniform: U, value: Uniforms[U]) => void;
   };
 }

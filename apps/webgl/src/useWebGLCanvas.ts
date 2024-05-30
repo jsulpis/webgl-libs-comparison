@@ -18,7 +18,6 @@ export const useWebGLCanvas: WebGLCanvasFn = <Uniforms extends Record<string, Un
     program = setupProgram(gl, fragment, vertex);
   } catch (e) {
     console.error(e);
-    return { canvas, setUniform: () => {}, uniforms };
   }
 
   const positionAttributeLocation = gl.getAttribLocation(program, "aPosition");
@@ -33,6 +32,14 @@ export const useWebGLCanvas: WebGLCanvasFn = <Uniforms extends Record<string, Un
     gl.uniform1f(timeUniformLocation, performance.now() / 500);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   });
+
+  function setSize({ width, height }: { width: number; height: number }) {
+    canvas.width = width;
+    canvas.height = height;
+
+    gl.viewport(0, 0, width, height);
+    gl.uniform2f(resolutionUniformLocation, width, height);
+  }
 
   const uniformsLocations = new Map(
     Object.keys(uniforms).map((uniformName) => [
@@ -67,21 +74,7 @@ export const useWebGLCanvas: WebGLCanvasFn = <Uniforms extends Record<string, Un
     }
   }
 
-  // listen for resize of the canvas itself instead of the whole window
-  new ResizeObserver((entries) => {
-    const size = entries[0].devicePixelContentBoxSize[0];
-
-    // resize after next paint, otherwise there is a glitch
-    setTimeout(() => {
-      canvas.width = size.inlineSize;
-      canvas.height = size.blockSize;
-
-      gl.viewport(0, 0, size.inlineSize, size.blockSize);
-      gl.uniform2f(resolutionUniformLocation, size.inlineSize, size.blockSize);
-    }, 0);
-  }).observe(canvas);
-
-  return { canvas, setUniform, uniforms: uniformsProxy };
+  return { canvas, setSize, setUniform, uniforms: uniformsProxy, gl };
 };
 
 function setupProgram(gl: WebGL2RenderingContext, fragment: string, vertex: string) {

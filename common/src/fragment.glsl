@@ -55,11 +55,13 @@ void main() {
 
   float bigCircle = sdCircle(vUv - BIG_CIRCLE_CENTER, BIG_CIRCLE_RADIUS);
   float smallCircle = sdCircle(vUv - smallCircleCenter, smallCircleRadius);
+  float mouseCircle = sdCircle(vUv - uMouse, smallCircleRadius / 2.f);
 
   vec3 col = BACKGROUND;
 
   col = mix(col, FOREGROUND, smoothstep(edgePrecision, 0.f, smin(bigCircle, smallCircle, BIG_CIRCLE_RADIUS * 2.f)));
   col = mix(col, BACKGROUND, 1.f - smoothstep(0.f, edgePrecision, bigCircle));
+  col = mix(col, vec3(1, 0, 0), 1.f - smoothstep(0.f, edgePrecision, mouseCircle));
 
   fragColor = vec4(col, 1.0f);
 }
