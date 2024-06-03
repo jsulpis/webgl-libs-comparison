@@ -5,11 +5,9 @@
   "description": "things used in all projects",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "types": "./index.d.ts"
+      "types": "./index.d.ts",
+      "import": "./src/index.ts"
     },
-    "./src/*": {
-      "import": "./src/*"
-    }
+    "./src/*": "./src/*"
   }
 }

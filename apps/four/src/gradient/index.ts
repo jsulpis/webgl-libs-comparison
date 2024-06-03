@@ -1,20 +1,10 @@
 import { WebGLRenderer, Material, Geometry, Mesh } from "four";
-import { setupBlob, onCanvasResize, flatten } from "common";
-import { vertex, fragment } from "common/src/shaders/blob.ts";
+import { onCanvasResize, flatten } from "common";
+import { vertex, fragment } from "common/src/shaders/gradient.ts";
 
 const canvas = document.querySelector("canvas")!;
 
 const renderer = new WebGLRenderer({ canvas });
-
-const material = new Material({
-  vertex: vertex.replaceAll("aPosition", "position"),
-  fragment,
-  uniforms: {
-    uTime: 0.0,
-    uMouse: [0, 0],
-    uResolution: [0, 0],
-  },
-});
 
 const geometry = new Geometry({
   position: {
@@ -32,6 +22,14 @@ const geometry = new Geometry({
   },
 });
 
+const material = new Material({
+  vertex: vertex.replaceAll("aPosition", "position"), // four provides the position attribute
+  fragment,
+  uniforms: {
+    uTime: 0.0,
+  },
+});
+
 const mesh = new Mesh(geometry, material);
 
 requestAnimationFrame(function animate(time) {
@@ -41,15 +39,6 @@ requestAnimationFrame(function animate(time) {
   renderer.render(mesh);
 });
 
-setupBlob(canvas, (targetMouseCoord) => {
-  const currentMouse = mesh.material.uniforms.uMouse as [number, number];
-  mesh.material.uniforms.uMouse = [
-    currentMouse[0] + (targetMouseCoord.x - currentMouse[0]) * 0.05,
-    currentMouse[1] + (targetMouseCoord.y - currentMouse[1]) * 0.05,
-  ];
-});
-
 onCanvasResize(canvas, ({ devicePixelSize }) => {
-  mesh.material.uniforms.uResolution = [devicePixelSize.width, devicePixelSize.height];
   renderer.setSize(devicePixelSize.width, devicePixelSize.height);
 });

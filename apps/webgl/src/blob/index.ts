@@ -1,4 +1,5 @@
-import { onCanvasResize, fragment, vertex, setupBlob } from "common";
+import { onCanvasResize, setupBlob } from "common";
+import { vertex, fragment } from "common/src/shaders/blob.ts";
 import { useWebGLCanvas } from "../useWebGLCanvas";
 
 const canvas = document.querySelector("canvas");

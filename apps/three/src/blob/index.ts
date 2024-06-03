@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { vertex, fragment, setupBlob, onCanvasResize } from "common";
+import { setupBlob, onCanvasResize } from "common";
+import { vertex, fragment } from "common/src/shaders/blob.ts";
 
 const canvas = document.querySelector("canvas")!;
 
@@ -9,7 +10,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.Camera();
 
 const material = new THREE.RawShaderMaterial({
-  vertexShader: vertex.replaceAll("aPosition", "position").replace("#version 300 es", ""), // three already provides the position attribute
+  vertexShader: vertex.replaceAll("aPosition", "position").replace("#version 300 es", ""), // three provides the position attribute
   fragmentShader: fragment.replace("#version 300 es", ""),
   uniforms: {
     uTime: { value: 0.0 },

@@ -1,6 +1,6 @@
 import { Renderer, Geometry, Program, Mesh } from "ogl";
-import { setupBlob, onCanvasResize, flatten } from "common";
-import { vertex, fragment } from "common/src/shaders/blob.ts";
+import { onCanvasResize, flatten } from "common";
+import { vertex, fragment } from "common/src/shaders/gradient.ts";
 
 const canvas = document.querySelector("canvas")!;
 
@@ -25,12 +25,10 @@ const geometry = new Geometry(gl, {
 });
 
 const program = new Program(gl, {
-  vertex,
+  vertex: vertex,
   fragment,
   uniforms: {
     uTime: { value: 0 },
-    uMouse: { value: [0, 0] },
-    uResolution: { value: [0, 0] },
   },
 });
 
@@ -43,16 +41,7 @@ requestAnimationFrame(function animate(time) {
   renderer.render({ scene });
 });
 
-setupBlob(canvas, (targetMouseCoord) => {
-  const currentMouse = program.uniforms.uMouse.value as [number, number];
-  program.uniforms.uMouse.value = [
-    currentMouse[0] + (targetMouseCoord.x - currentMouse[0]) * 0.05,
-    currentMouse[1] + (targetMouseCoord.y - currentMouse[1]) * 0.05,
-  ];
-});
-
 onCanvasResize(canvas, ({ devicePixelSize }) => {
-  program.uniforms.uResolution.value = [devicePixelSize.width, devicePixelSize.height];
   renderer.setSize(devicePixelSize.width, devicePixelSize.height);
   canvas.removeAttribute("style"); // Remove inline style set by ogl
 });

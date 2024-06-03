@@ -1,4 +1,5 @@
-import { onCanvasResize, setupBlob, vertex, fragment } from "common";
+import { onCanvasResize, setupBlob } from "common";
+import { vertex, fragment } from "common/src/shaders/blob.ts";
 
 const canvas = document.querySelector("canvas");
 const offscreen = canvas.transferControlToOffscreen();

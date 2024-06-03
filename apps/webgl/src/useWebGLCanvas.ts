@@ -2,7 +2,7 @@ import { flatten } from "common";
 
 type VectorUniform = [number, number] | [number, number, number] | [number, number, number, number];
 type UniformValue = number | VectorUniform;
-type UniformsObj = Record<string, UniformValue>;
+type UniformsObj = Record<string, UniformValue> | {};
 
 interface WebGLCanvasProps<Uniforms extends UniformsObj> {
   canvas: HTMLCanvasElement | OffscreenCanvas;
@@ -52,20 +52,26 @@ export const useWebGLCanvas = <Uniforms extends UniformsObj>({
     gl.uniform2f(resolutionUniformLocation, width, height);
   }
 
-  const uniformsLocations = new Map(
-    Object.keys(uniforms).map((uniformName) => [
-      uniformName,
-      gl.getUniformLocation(program, uniformName),
-    ])
-  );
+  const uniformsLocations =
+    uniforms != undefined
+      ? new Map(
+          Object.keys(uniforms).map((uniformName) => [
+            uniformName,
+            gl.getUniformLocation(program, uniformName),
+          ])
+        )
+      : new Map();
 
-  const uniformsProxy = new Proxy(uniforms, {
-    set(target, prop: UniformName, value) {
-      const result = setUniform(prop, value);
-      Object.assign(target, { [prop]: value });
-      return result !== -1;
-    },
-  });
+  const uniformsProxy =
+    uniforms != undefined
+      ? new Proxy(uniforms, {
+          set(target, prop: UniformName, value) {
+            const result = setUniform(prop, value);
+            Object.assign(target, { [prop]: value });
+            return result !== -1;
+          },
+        })
+      : uniforms;
 
   function setUniform<U extends UniformName>(uniform: U, value: Uniforms[U]): void | -1 {
     const uniformLocation = uniformsLocations.get(uniform);

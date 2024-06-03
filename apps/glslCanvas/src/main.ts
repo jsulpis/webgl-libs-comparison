@@ -1,12 +1,3 @@
-import { vertexShader, fragmentShader } from "common";
-import GlslCanvas from "glslCanvas";
+import "common/src/styles.css";
 
-const sandbox = new GlslCanvas(document.querySelector("canvas"));
-
-sandbox.load(fragmentShader, vertexShader);
-
-requestAnimationFrame(function animate() {
-   requestAnimationFrame(animate);
-
-   sandbox.setUniform("uTime", performance.now() / 500);
-});
+import "./gradient";
