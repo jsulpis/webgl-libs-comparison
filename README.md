@@ -12,8 +12,8 @@ I don't need the features of the big WebGL libraries and I like to keep my proje
 
 ## Global requirements
 
-- canvas positionned with CSS (not created by the lib)
-- support WebGL 2 (GLSL version 3.30)
+- canvas positionned and sized in CSS (not created by the lib)
+- support for WebGL 2 (GLSL version 3.30)
 - types
 - works on the server (SSR/SSG) and on a web worker (OffscreenCanvas)
 - control over vertex and fragment shaders
@@ -33,11 +33,11 @@ I don't need the features of the big WebGL libraries and I like to keep my proje
 | Library      | Canvas styled in CSS | WebGL 2 | Types | Works on server / worker |
 | ------------ | -------------------- | ------- | ----- | ------------------------ |
 | native WebGL | ✅                   | ✅      | ✅    | ✅                       |
-| four         | ✅                   | ✅      | ✅    |                          |
+| four         | ✅                   | ✅      | ✅    | 🟧                       |
 | shree        | ❌                   | ❌      | ❌    | ❌                       |
 | glslCanvas   | ✅                   | ❌      | ❌    | ❌                       |
-| ogl          | ✅                   | ✅      | ✅    |                          |
-| regl         | ✅                   | ❌      | ✅    |                          |
+| ogl          | ✅                   | ✅      | ✅    | ✅                       |
+| regl         | ✅                   | ❌      | ✅    | ✅                       |
 | three        | ✅                   | ✅      | ✅    | ✅                       |
 | pixi         | ✅                   | ✅      | ✅    | ✅                       |
 
@@ -55,13 +55,13 @@ Basic [shaders](https://github.com/jsulpis/webgl-libs-comparison/blob/main/commo
 
 Sorted by weight.
 
-| Library      | Demo                                                                                                                                                                          | Weight (resource) | Weight (gzip) | Complexity |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------- | ---------- |
-| native WebGL | [live](https://jsulpis.github.io/webgl-libs-comparison/webgl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/webgl/src/gradient/index.ts)           | 3.2kB             | 1.7kB         | \*\*\*\*\* |
-| four         | [live](https://jsulpis.github.io/webgl-libs-comparison/four/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/four/src/gradient/index.ts)             | 18.5kB            | 7.1kB         | \*\*\*     |
-| shree        | [live](https://jsulpis.github.io/webgl-libs-comparison/shree/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/shree/src/gradient/index.ts)           | 27.5kB            | 8.5kB         | \*\*\*     |
-| glslCanvas   | [live](https://jsulpis.github.io/webgl-libs-comparison/glslCanvas/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/glslCanvas/src/gradient/index.ts) | 28.5kB            | 9.6kB         | \*         |
-| ogl          | [live](https://jsulpis.github.io/webgl-libs-comparison/ogl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/ogl/src/gradient/index.ts)               | 44.5kB            | 13.5kB        | \*\*\*     |
-| regl         | [live](https://jsulpis.github.io/webgl-libs-comparison/regl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/regl/src/gradient/index.ts)             | 125kB             | 42.2kB        | \*\*       |
-| three        | [live](https://jsulpis.github.io/webgl-libs-comparison/three/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/three/src/gradient/index.ts)           | 452kB             | 115kB         | \*\*\*     |
-| pixi         | [live](https://jsulpis.github.io/webgl-libs-comparison/pixi/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/pixi/src/gradient/index.ts)             | 458kB             | 139kB         | \*\*\*     |
+| Library      | Demo                                                                                                                                                                          | Weight (resource) | Weight (gzip) | Complexity | Relevant for this use case |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------- | ---------- | -------------------------- |
+| native WebGL | [live](https://jsulpis.github.io/webgl-libs-comparison/webgl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/webgl/src/gradient/index.ts)           | 3.2kB             | 1.7kB         | \*\*\*\*\* | 👍                         |
+| four         | [live](https://jsulpis.github.io/webgl-libs-comparison/four/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/four/src/gradient/index.ts)             | 18.5kB            | 7.1kB         | \*\*\*     | 👍                         |
+| shree        | [live](https://jsulpis.github.io/webgl-libs-comparison/shree/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/shree/src/gradient/index.ts)           | 27.5kB            | 8.5kB         | \*\*\*     | 👍                         |
+| glslCanvas   | [live](https://jsulpis.github.io/webgl-libs-comparison/glslCanvas/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/glslCanvas/src/gradient/index.ts) | 28.5kB            | 9.6kB         | \*         | 👍                         |
+| ogl          | [live](https://jsulpis.github.io/webgl-libs-comparison/ogl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/ogl/src/gradient/index.ts)               | 44.5kB            | 13.5kB        | \*\*\*     | 👍                         |
+| regl         | [live](https://jsulpis.github.io/webgl-libs-comparison/regl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/regl/src/gradient/index.ts)             | 125kB             | 42.2kB        | \*\*       | 🙅‍♂️                         |
+| three        | [live](https://jsulpis.github.io/webgl-libs-comparison/three/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/three/src/gradient/index.ts)           | 452kB             | 115kB         | \*\*\*     | 🙅‍♂️                         |
+| pixi         | [live](https://jsulpis.github.io/webgl-libs-comparison/pixi/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/pixi/src/gradient/index.ts)             | 458kB             | 139kB         | \*\*\*     | 🙅‍♂️                         |
