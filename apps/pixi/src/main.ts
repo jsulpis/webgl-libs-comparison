@@ -1,4 +1,4 @@
 import "common/src/styles.css";
 
-// import "./blob";
-import "./gradient";
+import "./blob";
+// import "./gradient";

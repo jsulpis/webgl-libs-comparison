@@ -30,38 +30,75 @@ I don't need the features of the big WebGL libraries and I like to keep my proje
 - **[three](https://threejs.org/)**: by far the most popular and the default choice for any 3D project that needs more than basic functionalities (_if_ the other solutions above are not enough).
 - **[pixi](https://pixijs.com/)**: claims to be the fastest 2D WebGL renderer. I guess it should be reserved for advanced 2D use cases, because it's even heavier than three.
 
-| Library      | Canvas styled in CSS | WebGL 2 | Types | Works on server / worker |
-| ------------ | -------------------- | ------- | ----- | ------------------------ |
-| native WebGL | ✅                   | ✅      | ✅    | ✅                       |
-| four         | ✅                   | ✅      | ✅    | 🟧                       |
-| shree        | ❌                   | ❌      | ❌    | ❌                       |
-| glslCanvas   | ✅                   | ❌      | ❌    | ❌                       |
-| ogl          | ✅                   | ✅      | ✅    | ✅                       |
-| regl         | ✅                   | ❌      | ✅    | ✅                       |
-| three        | ✅                   | ✅      | ✅    | ✅                       |
-| pixi         | ✅                   | ✅      | ✅    | ✅                       |
+| Library      | Canvas styled in CSS | WebGL 2 | Types | Works on server / worker | Complexity |
+| ------------ | -------------------- | ------- | ----- | ------------------------ | ---------- |
+| native WebGL | ✅                   | ✅      | ✅    | ✅                       | \*\*\*\*   |
+| four         | ✅                   | ✅      | ✅    | 🟧                       | \*\*\*     |
+| shree        | ❌                   | ❌      | ❌    | ❌                       | \*\*\*     |
+| glslCanvas   | ✅                   | ❌      | ❌    | ❌                       | \*         |
+| ogl          | ✅                   | ✅      | ✅    | ✅                       | \*\*\*     |
+| regl         | ✅                   | ❌      | ✅    | ✅                       | \*\*       |
+| three        | ✅                   | ✅      | ✅    | ✅                       | \*\*\*     |
+| pixi         | ✅                   | ✅      | ✅    | ✅                       | \*\*\*     |
 
-## Use case #1: simple gradient
-
-This is one of the simplest things to draw with WebGL, which allows to compare the syntax and weight of the libraries on a bare bones setup.
+## Benchmark #1: simple animated gradient
 
 <img src="https://github.com/jsulpis/webgl-libs-comparison/assets/22420399/8221b07f-0398-488e-94b2-0561831daadb" width=320 />
 
-### Setup
+This is one of the simplest things to draw with WebGL, which allows to compare the syntax and weight of the libraries on a bare bones setup.
 
-Basic [shaders](https://github.com/jsulpis/webgl-libs-comparison/blob/main/common/src/shaders/gradient.ts) that display a gradient based on the UV coordinates, with a `uTime` uniform to move the gradient over time.
+### Use case
+
+A render made with a fragment shader using only the UV coordinates given by the vertex shader, and optionally a `uTime` uniform to make an animation.
 
 ### Results
 
 Sorted by weight.
 
-| Library      | Demo                                                                                                                                                                          | Weight (resource) | Weight (gzip) | Complexity | Relevant for this use case |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------- | ---------- | -------------------------- |
-| native WebGL | [live](https://jsulpis.github.io/webgl-libs-comparison/webgl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/webgl/src/gradient/index.ts)           | 3.2kB             | 1.7kB         | \*\*\*\*\* | 👍                         |
-| four         | [live](https://jsulpis.github.io/webgl-libs-comparison/four/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/four/src/gradient/index.ts)             | 18.5kB            | 7.1kB         | \*\*\*     | 👍                         |
-| shree        | [live](https://jsulpis.github.io/webgl-libs-comparison/shree/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/shree/src/gradient/index.ts)           | 27.5kB            | 8.5kB         | \*\*\*     | 👍                         |
-| glslCanvas   | [live](https://jsulpis.github.io/webgl-libs-comparison/glslCanvas/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/glslCanvas/src/gradient/index.ts) | 28.5kB            | 9.6kB         | \*         | 👍                         |
-| ogl          | [live](https://jsulpis.github.io/webgl-libs-comparison/ogl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/ogl/src/gradient/index.ts)               | 44.5kB            | 13.5kB        | \*\*\*     | 👍                         |
-| regl         | [live](https://jsulpis.github.io/webgl-libs-comparison/regl/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/regl/src/gradient/index.ts)             | 125kB             | 42.2kB        | \*\*       | 🙅‍♂️                         |
-| three        | [live](https://jsulpis.github.io/webgl-libs-comparison/three/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/three/src/gradient/index.ts)           | 452kB             | 115kB         | \*\*\*     | 🙅‍♂️                         |
-| pixi         | [live](https://jsulpis.github.io/webgl-libs-comparison/pixi/), [code](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/pixi/src/gradient/index.ts)             | 458kB             | 139kB         | \*\*\*     | 🙅‍♂️                         |
+| Library      | Code                                                                                                     | Weight (resource) | Weight (gzip) |
+| ------------ | -------------------------------------------------------------------------------------------------------- | ----------------- | ------------- |
+| native WebGL | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/webgl/src/gradient/index.ts)      | 3.2kB             | 1.7kB         |
+| four         | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/four/src/gradient/index.ts)       | 18.5kB            | 7.1kB         |
+| shree        | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/shree/src/gradient/index.ts)      | 27.5kB            | 8.5kB         |
+| glslCanvas   | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/glslCanvas/src/gradient/index.ts) | 28.5kB            | 9.6kB         |
+| ogl          | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/ogl/src/gradient/index.ts)        | 44.5kB            | 13.5kB        |
+| regl         | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/regl/src/gradient/index.ts)       | 125kB             | 42.2kB        |
+| three        | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/three/src/gradient/index.ts)      | 452kB             | 115kB         |
+| pixi         | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/pixi/src/gradient/index.ts)       | 458kB             | 139kB         |
+
+### Thoughts
+
+- Three and Pixi are way too heavy for this use case, and this is obviously not what they are made for. Regl is also too heavy in my opinion.
+- among the off-the-shelf libraries, glslCanvas is by far the easiest to use, but it's surprisingly heavier than four or shree.
+- four, shree and ogl are quite similar, ogl being a little lower-level, and four closer to three.js.
+- Native WebGL is really light, and with the little helper that I made (`useWebGLCanvas`), the usage is really easy. I think this is the solution that I would pick for this use case.
+
+## Benchmark #2: blob animation with mouse interaction
+
+<img src="https://github.com/jsulpis/webgl-libs-comparison/assets/22420399/2cb0aba0-b467-4d71-8559-a28442dfc15f" width="320" />
+
+A little animation in a fragment shader using user input.
+
+### Use case
+
+A render a little more complex made with a fragment shader and using the UV coordinates, a uTime uniform as well as other uniforms driven by user input.
+
+It's similar to the previous benchmark, just a little closer to a real world scenario. And the user input is important to test the usage in a web worker, because unlike for the time, a web worker cannot listen to user interactions. So there has to be messages between the main and worker scripts.
+
+### Results
+
+Sorted by weight.
+
+shree, glslCanvas and regl are excluded from this benchmark and the next ones, because they lack some features that I want (support for WebGL2, usage in web worker...).
+
+| Library      | Code                                                                                            | Weight (resource) | Weight (gzip) | Web Worker |
+| ------------ | ----------------------------------------------------------------------------------------------- | ----------------- | ------------- | ---------- |
+| native WebGL | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/webgl/src/blob/index.ts) | 6kB               | 2.7kB         | ✅         |
+| four         | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/four/src/blob/index.ts)  | 21.3kB            | 8kB           | 🟧         |
+| ogl          | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/ogl/src/blob/index.ts)   | 47.3kB            | 14.6kB        | ✅         |
+| three        | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/three/src/blob/index.ts) | 454kB             | 116kB         | ✅         |
+| pixi         | [link](https://github.com/jsulpis/webgl-libs-comparison/blob/main/apps/pixi/src/blob/index.ts)  | 461kB             | 140kB         | ✅         |
+
+### Thoughts
+
+- all projects gained roughly 1kB, which is the weight of the project-specific code, so nothing surprising here.
