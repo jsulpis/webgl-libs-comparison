@@ -43,7 +43,9 @@ I don't need the features of the big WebGL libraries and I like to keep my proje
 
 ## Benchmark #1: simple animated gradient
 
-<img src="https://github.com/jsulpis/webgl-libs-comparison/assets/22420399/8221b07f-0398-488e-94b2-0561831daadb" width=320 />
+<a href="https://jsulpis.github.io/webgl-libs-comparison/regl/">
+   <img src="https://github.com/jsulpis/webgl-libs-comparison/assets/22420399/8221b07f-0398-488e-94b2-0561831daadb" width=320 />
+</a>
 
 This is one of the simplest things to draw with WebGL, which allows to compare the syntax and weight of the libraries on a bare bones setup.
 
@@ -75,15 +77,17 @@ Sorted by weight.
 
 ## Benchmark #2: blob animation with mouse interaction
 
-<img src="https://github.com/jsulpis/webgl-libs-comparison/assets/22420399/2cb0aba0-b467-4d71-8559-a28442dfc15f" width="320" />
+<a href="https://jsulpis.github.io/webgl-libs-comparison/four/">
+   <img src="https://github.com/jsulpis/webgl-libs-comparison/assets/22420399/2cb0aba0-b467-4d71-8559-a28442dfc15f" width="320" />
+</a>
 
 A little animation in a fragment shader using user input.
 
 ### Use case
 
-A render a little more complex made with a fragment shader and using the UV coordinates, a uTime uniform as well as other uniforms driven by user input.
+A render a little more complex made with a fragment shader and using the UV coordinates, a `uTime` uniform and another one driven by user input.
 
-It's similar to the previous benchmark, just a little closer to a real world scenario. And the user input is important to test the usage in a web worker, because unlike for the time, a web worker cannot listen to user interactions. So there has to be messages between the main and worker scripts.
+It's similar to the previous benchmark, just a little closer to a real world scenario. And the user input is important to test the usage in a web worker, because unlike for the time, a web worker cannot watch user interactions. So there has to be messages between the main and worker scripts.
 
 ### Results
 
@@ -102,3 +106,5 @@ shree, glslCanvas and regl are excluded from this benchmark and the next ones, b
 ### Thoughts
 
 - all projects gained roughly 1kB, which is the weight of the project-specific code, so nothing surprising here.
+- four seems to have an issue in a web worker that breaks synchronous ES imports, forcing to use dynamic `import()`. This is a little inconvenient but it's still possible to make it work.
+- four and ogl renderers don't accept a canvas of type OffscreenCanvas
