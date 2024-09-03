@@ -2,13 +2,236 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebGL demo</title>
+    <title>WebGL White Dot with Bloom</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
   </head>
   <body>
-    <h1>Vanilla WebGL</h1>
-    <canvas></canvas>
-    <script type="module" src="src/main.ts"></script>
+    <canvas id="glCanvas"></canvas>
+    <script type="module" src="./src/main.ts"></script>
+    <!-- <script>
+      const vertexShaderSource = `
+            attribute vec4 a_position;
+            void main() {
+                gl_Position = a_position;
+                gl_PointSize = 10.0;
+            }
+        `;
+
+      const fragmentShaderSource = `
+            precision mediump float;
+            void main() {
+                gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+            }
+        `;
+
+      const bloomVertexShaderSource = `
+            attribute vec4 a_position;
+            attribute vec2 a_texCoord;
+            varying vec2 v_texCoord;
+            void main() {
+                gl_Position = a_position;
+                v_texCoord = a_texCoord;
+            }
+        `;
+
+      const bloomFragmentShaderSource = `
+            precision mediump float;
+            uniform sampler2D u_image;
+            varying vec2 v_texCoord;
+            uniform vec2 u_resolution;
+            uniform float u_threshold;
+            uniform float u_intensity;
+
+            void main() {
+                vec4 color = texture2D(u_image, v_texCoord);
+                float brightness = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722));
+                if (brightness > u_threshold) {
+                    gl_FragColor = color * u_intensity;
+                } else {
+                    gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+                }
+            }
+        `;
+
+      const finalFragmentShaderSource = `
+            precision mediump float;
+            uniform sampler2D u_image;
+            uniform sampler2D u_bloomTexture;
+            varying vec2 v_texCoord;
+
+            void main() {
+                vec4 baseColor = texture2D(u_image, v_texCoord);
+                vec4 bloomColor = texture2D(u_bloomTexture, v_texCoord);
+                gl_FragColor = baseColor + bloomColor;
+            }
+        `;
+
+      function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.error("Shader compilation error:", gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      }
+
+      function createProgram(gl, vertexShader, fragmentShader) {
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+          console.error("Program linking error:", gl.getProgramInfoLog(program));
+          gl.deleteProgram(program);
+          return null;
+        }
+        return program;
+      }
+
+      function main() {
+        const canvas = document.getElementById("glCanvas");
+        const gl = canvas.getContext("webgl");
+        if (!gl) {
+          console.error("WebGL not supported");
+          return;
+        }
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+        // Create main program
+        const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+        const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+        const program = createProgram(gl, vertexShader, fragmentShader);
+
+        // Create bloom program
+        const bloomVertexShader = createShader(gl, gl.VERTEX_SHADER, bloomVertexShaderSource);
+        const bloomFragmentShader = createShader(gl, gl.FRAGMENT_SHADER, bloomFragmentShaderSource);
+        const bloomProgram = createProgram(gl, bloomVertexShader, bloomFragmentShader);
+
+        // Create final program
+        const finalFragmentShader = createShader(gl, gl.FRAGMENT_SHADER, finalFragmentShaderSource);
+        const finalProgram = createProgram(gl, bloomVertexShader, finalFragmentShader);
+
+        // Set up buffers and attributes for main program
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0, 0]), gl.STATIC_DRAW);
+
+        const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+        gl.enableVertexAttribArray(positionAttributeLocation);
+        gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+
+        // Set up buffers and attributes for post-processing
+        const quadBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+        gl.bufferData(
+          gl.ARRAY_BUFFER,
+          new Float32Array([-1, -1, 0, 0, 1, -1, 1, 0, -1, 1, 0, 1, 1, 1, 1, 1]),
+          gl.STATIC_DRAW
+        );
+
+        // Create framebuffers and textures
+        const createFramebuffer = (width, height) => {
+          const fbo = gl.createFramebuffer();
+          gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+
+          const texture = gl.createTexture();
+          gl.bindTexture(gl.TEXTURE_2D, texture);
+          gl.texImage2D(
+            gl.TEXTURE_2D,
+            0,
+            gl.RGBA,
+            width,
+            height,
+            0,
+            gl.RGBA,
+            gl.UNSIGNED_BYTE,
+            null
+          );
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+          gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+
+          return { fbo, texture };
+        };
+
+        const mainFB = createFramebuffer(gl.canvas.width, gl.canvas.height);
+        const bloomFB = createFramebuffer(gl.canvas.width, gl.canvas.height);
+
+        // Render function
+        function render() {
+          // Render to main framebuffer
+          gl.bindFramebuffer(gl.FRAMEBUFFER, mainFB.fbo);
+          gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+          gl.clearColor(0, 0, 0, 1);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+
+          gl.useProgram(program);
+          gl.drawArrays(gl.POINTS, 0, 1);
+
+          // Apply bloom effect
+          gl.bindFramebuffer(gl.FRAMEBUFFER, bloomFB.fbo);
+          gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+          gl.useProgram(bloomProgram);
+
+          gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+          const positionLoc = gl.getAttribLocation(bloomProgram, "a_position");
+          const texCoordLoc = gl.getAttribLocation(bloomProgram, "a_texCoord");
+          gl.enableVertexAttribArray(positionLoc);
+          gl.enableVertexAttribArray(texCoordLoc);
+          gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 16, 0);
+          gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 16, 8);
+
+          gl.activeTexture(gl.TEXTURE0);
+          gl.bindTexture(gl.TEXTURE_2D, mainFB.texture);
+          gl.uniform1i(gl.getUniformLocation(bloomProgram, "u_image"), 0);
+          gl.uniform2f(
+            gl.getUniformLocation(bloomProgram, "u_resolution"),
+            gl.canvas.width,
+            gl.canvas.height
+          );
+          gl.uniform1f(gl.getUniformLocation(bloomProgram, "u_threshold"), 0.5);
+          gl.uniform1f(gl.getUniformLocation(bloomProgram, "u_intensity"), 1.5);
+
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+          // Render final image to canvas
+          gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+          gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+          gl.useProgram(finalProgram);
+
+          gl.activeTexture(gl.TEXTURE0);
+          gl.bindTexture(gl.TEXTURE_2D, mainFB.texture);
+          gl.uniform1i(gl.getUniformLocation(finalProgram, "u_image"), 0);
+
+          gl.activeTexture(gl.TEXTURE1);
+          gl.bindTexture(gl.TEXTURE_2D, bloomFB.texture);
+          gl.uniform1i(gl.getUniformLocation(finalProgram, "u_bloomTexture"), 1);
+
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+          // requestAnimationFrame(render);
+        }
+
+        render();
+      }
+
+      main();
+    </script> -->
   </body>
 </html>

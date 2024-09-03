@@ -1,4 +1,4 @@
-import { useWebGLCanvas } from "../useWebGLCanvas";
+import { useBasicWebGLCanvas } from "../useWebGLCanvas";
 
 const handlers = {
   main,
@@ -11,7 +11,7 @@ addEventListener("message", function (e) {
   handler(e.data.payload);
 });
 
-let ctx: ReturnType<typeof useWebGLCanvas> & { uniforms: typeof defaultUniforms };
+let ctx: ReturnType<typeof useBasicWebGLCanvas> & { uniforms: typeof defaultUniforms };
 let defaultUniforms = {
   uMouse: [0, 0] as [number, number],
   uResolution: [0, 0] as [number, number],
@@ -24,7 +24,7 @@ interface MainProps {
 }
 
 function main({ canvas, fragment, vertex }: MainProps) {
-  ctx = useWebGLCanvas({
+  ctx = useBasicWebGLCanvas({
     canvas,
     vertex,
     fragment,

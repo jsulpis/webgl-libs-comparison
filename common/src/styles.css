@@ -20,5 +20,5 @@ canvas {
   width: 80dvmin;
   height: 80dvmin;
   border: 2px solid rgba(255 255 255 / 0.2);
-  border-radius: 4%;
+  border-radius: 16px;
 }

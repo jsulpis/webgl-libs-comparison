@@ -1,10 +1,10 @@
 import { onCanvasResize } from "common";
 import { vertex, fragment } from "common/src/shaders/gradient.ts";
-import { useWebGLCanvas } from "../useWebGLCanvas";
+import { useBasicWebGLCanvas } from "../useWebGLCanvas";
 
 const canvas = document.querySelector("canvas");
 
-const { setSize } = useWebGLCanvas({ canvas, vertex, fragment });
+const { setSize } = useBasicWebGLCanvas({ canvas, vertex, fragment });
 
 onCanvasResize(canvas, ({ devicePixelSize }) => {
   setSize(devicePixelSize);

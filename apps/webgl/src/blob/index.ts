@@ -1,10 +1,10 @@
 import { onCanvasResize, setupBlob } from "common";
 import { vertex, fragment } from "common/src/shaders/blob.ts";
-import { useWebGLCanvas } from "../useWebGLCanvas";
+import { useBasicWebGLCanvas } from "../useWebGLCanvas";
 
 const canvas = document.querySelector("canvas");
 
-const { uniforms, setSize } = useWebGLCanvas({
+const { uniforms, setSize } = useBasicWebGLCanvas({
   canvas,
   vertex,
   fragment,
